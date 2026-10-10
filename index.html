@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123f3a">
+  <meta name="description" content="OdontoVitta — cuidado odontológico humanizado, tecnologia e sorrisos saudáveis. Agende sua consulta.">
+  <title>OdontoVitta | Seu sorriso, nosso cuidado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #123f3a;
+      --green-2: #1d5b50;
+      --mint: #dff1e9;
+      --mint-light: #f4faf6;
+      --cream: #fbfaf6;
+      --ink: #19312e;
+      --muted: #6e817b;
+      --coral: #e6a58e;
+      --white: #fff;
+      --shadow: 0 22px 60px rgba(18, 63, 58, .10);
+      --radius: 26px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { font-family: "DM Sans", sans-serif; color: var(--ink); background: var(--cream); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--green-2); font-size: .77rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--coral); border-radius: 5px; }
+    h1, h2, h3 { font-family: "Manrope", sans-serif; letter-spacing: -.045em; line-height: 1.12; }
+    h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    .section-copy { color: var(--muted); max-width: 570px; margin-top: 17px; font-size: 1.04rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 22px; border: 1px solid transparent; border-radius: 999px; font-weight: 700; cursor: pointer; transition: transform .2s, background .2s, box-shadow .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: var(--white); background: var(--green); box-shadow: 0 9px 22px rgba(18,63,58,.16); }
+    .btn-primary:hover { background: var(--green-2); }
+    .btn-light { background: rgba(255,255,255,.8); color: var(--green); border-color: #dce9e2; }
+    .arrow { font-size: 1.1rem; transition: transform .2s; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 100; background: rgba(251,250,246,.9); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(18,63,58,.07); }
+    .nav { height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-family: "Manrope", sans-serif; font-size: 1.16rem; font-weight: 800; letter-spacing: -.04em; white-space: nowrap; }
+    .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; color: white; background: var(--green); border-radius: 15px 15px 15px 5px; }
+    .brand-mark svg { width: 25px; height: 25px; }
+    .brand span small { display: block; font-family: "DM Sans", sans-serif; font-size: .61rem; color: var(--muted); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; margin-top: -2px; }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: #49645e; font-size: .9rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .nav-actions .btn { min-height: 45px; padding: 0 18px; font-size: .87rem; }
+    .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid #dce9e2; background: white; color: var(--green); border-radius: 14px; cursor: pointer; font-size: 1.3rem; }
+
+    /* Hero */
+    .hero { position: relative; overflow: hidden; padding: 64px 0 74px; }
+    .hero::before { content: ""; position: absolute; width: 490px; height: 490px; right: -230px; top: -230px; border: 1px solid #dcebe3; border-radius: 50%; box-shadow: 0 0 0 50px rgba(223,241,233,.28), 0 0 0 100px rgba(223,241,233,.18); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 64px; position: relative; }
+    .hero h1 { font-size: clamp(3rem, 5.8vw, 5.2rem); max-width: 640px; margin: 20px 0 22px; }
+    .hero h1 em { font-style: normal; color: var(--green-2); position: relative; white-space: nowrap; }
+    .hero h1 em::after { content: ""; position: absolute; left: 0; bottom: -4px; width: 100%; height: 9px; background: var(--coral); opacity: .65; border-radius: 50%; transform: rotate(-2deg); z-index: -1; }
+    .hero-text { max-width: 510px; color: var(--muted); font-size: 1.08rem; }
+    .hero-buttons { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 30px; }
+    .hero-note { display: flex; align-items: center; gap: 13px; margin-top: 32px; color: var(--muted); font-size: .86rem; }
+    .avatar-stack { display: flex; padding-left: 5px; }
+    .avatar { width: 33px; height: 33px; margin-left: -5px; border: 3px solid var(--cream); border-radius: 50%; display: grid; place-items: center; background: #dcebe3; font-size: .72rem; }
+    .hero-note strong { color: var(--ink); }
+    .hero-visual { min-height: 510px; position: relative; }
+    .hero-photo { position: absolute; inset: 0 22px 18px 22px; overflow: hidden; border-radius: 180px 180px 28px 28px; background: #d5e7dc; box-shadow: var(--shadow); }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .photo-tint { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(18,63,58,.18)); pointer-events: none; }
+    .floating-card { position: absolute; z-index: 2; background: rgba(255,255,255,.94); backdrop-filter: blur(12px); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.8); border-radius: 18px; padding: 16px 18px; }
+    .rating-card { left: -4px; top: 95px; }
+    .rating-stars { color: #d99a54; letter-spacing: 2px; font-size: .9rem; }
+    .floating-card strong { display: block; font-family: "Manrope", sans-serif; font-size: 1.03rem; }
+    .floating-card small { display: block; color: var(--muted); font-size: .78rem; }
+    .care-card { right: -5px; bottom: 45px; display: flex; align-items: center; gap: 12px; }
+    .care-icon { width: 42px; height: 42px; flex-shrink: 0; display: grid; place-items: center; border-radius: 14px; background: var(--mint); color: var(--green); font-size: 1.2rem; }
+
+    /* Trust strip */
+    .trust-strip { background: var(--green); color: white; padding: 24px 0; }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .trust-item { display: flex; align-items: center; justify-content: center; gap: 12px; color: #e2f0e9; font-size: .9rem; font-weight: 600; }
+    .trust-item span { width: 38px; height: 38px; border: 1px solid rgba(255,255,255,.2); border-radius: 13px; display: grid; place-items: center; font-size: 1.1rem; }
+
+    /* Services */
+    .services { padding: 105px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 42px; }
+    .section-heading .section-copy { max-width: 420px; margin: 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .service-card { background: white; border: 1px solid #e8eee8; padding: 29px; border-radius: var(--radius); transition: transform .25s, box-shadow .25s, border-color .25s; }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: transparent; }
+    .service-icon { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 18px; color: var(--green); background: var(--mint-light); margin-bottom: 23px; }
+    .service-icon svg { width: 27px; height: 27px; }
+    .service-card h3 { font-size: 1.25rem; margin-bottom: 12px; letter-spacing: -.025em; }
+    .service-card p { color: var(--muted); font-size: .94rem; }
+    .service-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: var(--green-2); font-size: .9rem; font-weight: 700; }
+
+    /* About */
+    .about { padding: 20px 0 100px; }
+    .about-panel { display: grid; grid-template-columns: .95fr 1.05fr; background: var(--mint-light); border-radius: 34px; overflow: hidden; }
+    .about-visual { min-height: 480px; position: relative; }
+    .about-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .about-content { padding: clamp(34px, 5vw, 68px); align-self: center; }
+    .about-content h2 { margin-top: 18px; }
+    .about-content > p { color: var(--muted); margin-top: 18px; }
+    .check-list { display: grid; gap: 14px; margin: 27px 0 30px; }
+    .check-item { display: flex; gap: 11px; align-items: flex-start; font-weight: 600; font-size: .94rem; }
+    .check { display: grid; place-items: center; flex: 0 0 23px; height: 23px; background: #d8ece1; color: var(--green-2); border-radius: 50%; font-size: .8rem; }
+
+    /* Steps */
+    .experience { padding: 15px 0 105px; }
+    .center-heading { text-align: center; max-width: 650px; margin: 0 auto 46px; }
+    .center-heading .eyebrow { justify-content: center; }
+    .center-heading .section-copy { margin-left: auto; margin-right: auto; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .step { text-align: center; padding: 10px 22px; }
+    .step-number { width: 57px; height: 57px; margin: 0 auto 21px; display: grid; place-items: center; border-radius: 20px; color: var(--green); background: var(--mint); font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.2rem; transform: rotate(-4deg); }
+    .step:nth-child(2) .step-number { transform: rotate(4deg); background: #f7e6de; }
+    .step h3 { font-size: 1.2rem; margin-bottom: 11px; }
+    .step p { color: var(--muted); font-size: .94rem; }
+
+    /* Testimonial */
+    .testimonial-wrap { padding: 0 0 100px; }
+    .testimonial { background: #f1e8de; border-radius: 32px; padding: clamp(32px, 5vw, 65px); display: grid; grid-template-columns: .65fr 1.35fr; align-items: center; gap: 40px; }
+    .quote-mark { font-family: Georgia, serif; color: var(--green-2); font-size: 6rem; line-height: .7; }
+    .testimonial blockquote { font-family: "Manrope", sans-serif; font-size: clamp(1.35rem, 2.7vw, 2.15rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.35; }
+    .quote-person { display: flex; align-items: center; gap: 12px; margin-top: 25px; }
+    .quote-avatar { width: 43px; height: 43px; display: grid; place-items: center; background: #d4e5da; border-radius: 50%; font-size: 1.15rem; }
+    .quote-person strong { display: block; font-size: .92rem; }
+    .quote-person small { color: var(--muted); font-size: .8rem; }
+
+    /* CTA / footer */
+    .contact { padding: 0 0 95px; }
+    .contact-panel { position: relative; overflow: hidden; padding: clamp(35px, 6vw, 72px); background: var(--green); color: white; border-radius: 32px; display: flex; justify-content: space-between; align-items: center; gap: 32px; }
+    .contact-panel::after { content: ""; position: absolute; right: -80px; top: -150px; width: 360px; height: 360px; border: 1px solid rgba(255,255,255,.14); border-radius: 50%; box-shadow: 0 0 0 40px rgba(255,255,255,.035), 0 0 0 80px rgba(255,255,255,.025); }
+    .contact-panel .eyebrow { color: #c9e4d7; }
+    .contact-panel h2 { max-width: 650px; margin-top: 16px; }
+    .contact-panel p { color: #c3d8d0; margin-top: 15px; max-width: 560px; }
+    .contact-panel .btn { flex-shrink: 0; z-index: 1; color: var(--green); background: white; }
+    footer { border-top: 1px solid #e8eee8; padding: 31px 0; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+    .footer-row .brand-mark { width: 35px; height: 35px; border-radius: 12px 12px 12px 4px; }
+    .footer-row .brand { font-size: 1rem; }
+    .footer-row .brand span small { font-size: .52rem; }
+    .footer-copy { color: var(--muted); font-size: .82rem; }
+    .footer-links { display: flex; gap: 20px; color: #49645e; font-size: .84rem; font-weight: 600; }
+    .whatsapp-float { position: fixed; z-index: 90; right: 22px; bottom: 22px; width: 58px; height: 58px; display: grid; place-items: center; background: #23865d; color: white; border-radius: 50%; box-shadow: 0 12px 30px rgba(35,134,93,.3); transition: transform .2s; }
+    .whatsapp-float:hover { transform: translateY(-4px) scale(1.03); }
+    .whatsapp-float svg { width: 27px; height: 27px; }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    :focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+
+    @media (max-width: 980px) {
+      .nav-links { gap: 18px; }
+      .nav-actions .btn { padding: 0 14px; }
+      .hero-grid { gap: 35px; }
+      .hero-visual { min-height: 450px; }
+      .hero-photo { inset: 0 12px 18px; }
+      .rating-card { left: -12px; }
+      .care-card { right: -10px; }
+      .trust-item { font-size: .8rem; }
+      .about-panel { grid-template-columns: .85fr 1.15fr; }
+    }
+    @media (max-width: 760px) {
+      .container { width: min(100% - 36px, 560px); }
+      .nav { height: 72px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-actions > .btn { display: none; }
+      .nav-links { display: none; position: absolute; top: 71px; left: 0; right: 0; padding: 18px 24px 24px; background: var(--cream); border-bottom: 1px solid #e6eee7; flex-direction: column; align-items: stretch; gap: 0; box-shadow: 0 18px 25px rgba(18,63,58,.08); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 13px 4px; border-bottom: 1px solid #e8eee8; }
+      .nav-links a:last-child { border-bottom: 0; }
+      .hero { padding: 44px 0 53px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 42px; }
+      .hero h1 { font-size: clamp(2.75rem, 12vw, 4.1rem); margin: 17px 0; }
+      .hero-text { font-size: 1rem; }
+      .hero-visual { min-height: 430px; width: 100%; max-width: 490px; margin: 0 auto; }
+      .hero-photo { inset: 0 18px 16px; border-radius: 150px 150px 24px 24px; }
+      .rating-card { left: 0; top: 80px; }
+      .care-card { right: 0; bottom: 36px; }
+      .trust-grid { grid-template-columns: 1fr 1fr; gap: 18px 10px; }
+      .trust-item { justify-content: flex-start; font-size: .83rem; }
+      .trust-item span { width: 34px; height: 34px; flex-shrink: 0; }
+      .services { padding: 76px 0; }
+      .section-heading { align-items: flex-start; flex-direction: column; margin-bottom: 28px; gap: 16px; }
+      .section-heading .section-copy { margin-top: 0; }
+      .services-grid { grid-template-columns: 1fr; gap: 13px; }
+      .service-card { padding: 24px; display: grid; grid-template-columns: 54px 1fr; column-gap: 17px; }
+      .service-icon { grid-row: span 3; margin-bottom: 0; }
+      .service-card h3 { align-self: center; margin: 2px 0 7px; }
+      .service-card p { grid-column: 2; }
+      .service-link { grid-column: 2; margin-top: 14px; }
+      .about { padding: 0 0 76px; }
+      .about-panel { grid-template-columns: 1fr; border-radius: 26px; }
+      .about-visual { min-height: 300px; }
+      .about-content { padding: 32px 25px 35px; }
+      .experience { padding-bottom: 75px; }
+      .steps { grid-template-columns: 1fr; gap: 25px; }
+      .step { padding: 0 20px; }
+      .testimonial-wrap { padding-bottom: 75px; }
+      .testimonial { grid-template-columns: 1fr; gap: 17px; border-radius: 26px; padding: 32px 25px; }
+      .quote-mark { font-size: 4rem; }
+      .contact { padding-bottom: 65px; }
+      .contact-panel { flex-direction: column; align-items: flex-start; border-radius: 26px; padding: 35px 26px; }
+      .contact-panel .btn { width: 100%; }
+      .footer-row { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+      .whatsapp-float { width: 53px; height: 53px; right: 15px; bottom: 15px; }
+    }
+    @media (max-width: 390px) {
+      .container { width: calc(100% - 28px); }
+      .brand { font-size: 1rem; }
+      .brand-mark { width: 38px; height: 38px; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; }
+      .hero-visual { min-height: 360px; }
+      .floating-card { padding: 12px 14px; }
+      .care-card { gap: 8px; }
+      .care-icon { width: 35px; height: 35px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="OdontoVitta, página inicial">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M9 5.5C5.5 6.5 5 11 6.5 15.5c1.2 3.5 2.1 10.5 5.1 10.5 2.4 0 1.7-7.1 4.4-7.1s2 7.1 4.4 7.1c3 0 3.9-7 5.1-10.5C27 11 26.5 6.5 23 5.5c-2.8-.8-4.9 1.2-7 1.2s-4.2-2-7-1.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 12.5h8M16 8.5v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <span>OdontoVitta<small>Clínica odontológica</small></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+        <a href="#servicos">Especialidades</a>
+        <a href="#sobre">A clínica</a>
+        <a href="#experiencia">Como funciona</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-primary" href="#contato">Agendar consulta <span class="arrow">↗</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <span class="eyebrow">Odontologia com propósito</span>
+          <h1>Seu sorriso merece um cuidado <em>especial.</em></h1>
+          <p class="hero-text">Cuidamos da sua saúde bucal com acolhimento, tecnologia e um plano pensado para você. Mais confiança em cada sorriso, em todas as fases da vida.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#contato">Quero agendar <span class="arrow">↗</span></a>
+            <a class="btn btn-light" href="#servicos">Conheça a clínica</a>
+          </div>
+          <div class="hero-note">
+            <div class="avatar-stack" aria-hidden="true"><span class="avatar">☺</span><span class="avatar">✦</span><span class="avatar">♡</span></div>
+            <span><strong>Atendimento humanizado</strong><br>Do primeiro contato ao seu novo sorriso.</span>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-photo">
+            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1100&q=85" alt="Profissional odontológica atendendo uma paciente em consultório moderno" fetchpriority="high">
+            <div class="photo-tint"></div>
+          </div>
+          <div class="floating-card rating-card">
+            <div class="rating-stars" aria-label="Cinco estrelas">★★★★★</div>
+            <strong>Cuidado de verdade</strong>
+            <small>Você no centro de tudo</small>
+          </div>
+          <div class="floating-card care-card">
+            <span class="care-icon">✧</span>
+            <span><strong>Seu bem-estar</strong><small>é nossa prioridade</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Diferenciais da clínica">
+      <div class="container trust-grid">
+        <div class="trust-item"><span>♡</span> Atendimento acolhedor</div>
+        <div class="trust-item"><span>✧</span> Tecnologia moderna</div>
+        <div class="trust-item"><span>⌁</span> Plano individualizado</div>
+        <div class="trust-item"><span>☼</span> Ambiente confortável</div>
+      </div>
+    </section>
+
+    <section class="services" id="servicos">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="eyebrow">Nossas especialidades</span><h2 style="margin-top:17px">Tudo para cuidar<br>bem do seu sorriso.</h2></div>
+          <p class="section-copy">Prevenção, saúde e estética em um só lugar. Encontre o cuidado ideal para o seu momento.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M9 5.5C5.5 6.5 5 11 6.5 15.5c1.2 3.5 2.1 10.5 5.1 10.5 2.4 0 1.7-7.1 4.4-7.1s2 7.1 4.4 7.1c3 0 3.9-7 5.1-10.5C27 11 26.5 6.5 23 5.5c-2.8-.8-4.9 1.2-7 1.2s-4.2-2-7-1.2Z" stroke="currentColor" stroke-width="1.8"/></svg></div>
+            <h3>Clínica geral</h3><p>Consultas, restaurações e cuidados essenciais para manter sua saúde bucal em dia.</p>
+            <a class="service-link" href="#contato">Saiba mais <span>↗</span></a>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M7 18c3-2 5-2 9-2s6 0 9 2M8 21c2.2 3.2 5 4.5 8 4.5s5.8-1.3 8-4.5M10 11c1.5 1.2 3.5 1.2 5 0m2 0c1.5 1.2 3.5 1.2 5 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.8"/></svg></div>
+            <h3>Estética dental</h3><p>Opções para valorizar a harmonia do sorriso com avaliação cuidadosa e naturalidade.</p>
+            <a class="service-link" href="#contato">Saiba mais <span>↗</span></a>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M6 13h20M8 13v8m5-8v8m6-8v8m5-8v8M5 23h22M8 9h16M11 6h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Ortodontia</h3><p>Acompanhamento para alinhar os dentes e contribuir para uma mordida mais equilibrada.</p>
+            <a class="service-link" href="#contato">Saiba mais <span>↗</span></a>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 26s-10-5.8-10-13a5.5 5.5 0 0 1 10-3 5.5 5.5 0 0 1 10 3c0 7.2-10 13-10 13Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m11 16 3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Prevenção</h3><p>Limpeza, orientação e acompanhamento para proteger seu sorriso antes que problemas apareçam.</p>
+            <a class="service-link" href="#contato">Saiba mais <span>↗</span></a>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4v24M4 16h24M7.5 7.5l17 17m0-17-17 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="16" r="11.5" stroke="currentColor" stroke-width="1.8"/></svg></div>
+            <h3>Implantes</h3><p>Avaliação e planejamento individual para reabilitação oral, com atenção a cada detalhe.</p>
+            <a class="service-link" href="#contato">Saiba mais <span>↗</span></a>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4 19 12l9 1-6.5 6 2 9L16 23l-7.5 5 2-9L4 13l9-1 3-8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+            <h3>Odontopediatria</h3><p>Um cuidado gentil para que crianças construam uma relação positiva com o dentista.</p>
+            <a class="service-link" href="#contato">Saiba mais <span>↗</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="sobre">
+      <div class="container">
+        <div class="about-panel reveal">
+          <div class="about-visual"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=85" alt="Interior claro e moderno de uma clínica odontológica" loading="lazy"></div>
+          <div class="about-content">
+            <span class="eyebrow">Mais que uma consulta</span>
+            <h2>Um lugar onde você se sente em boas mãos.</h2>
+            <p>Acreditamos que cuidar do sorriso começa com escuta, confiança e respeito. Por isso, cada atendimento é pensado para que você entenda suas opções e se sinta seguro em cada etapa.</p>
+            <div class="check-list">
+              <div class="check-item"><span class="check">✓</span><span>Explicações claras, sem pressa e sem julgamentos.</span></div>
+              <div class="check-item"><span class="check">✓</span><span>Planejamento de tratamento de acordo com suas necessidades.</span></div>
+              <div class="check-item"><span class="check">✓</span><span>Ambiente preparado para oferecer conforto e tranquilidade.</span></div>
+            </div>
+            <a class="btn btn-primary" href="#contato">Venha nos conhecer <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience" id="experiencia">
+      <div class="container">
+        <div class="center-heading reveal">
+          <span class="eyebrow">Sua jornada com a gente</span>
+          <h2 style="margin-top:17px">Cuidado simples, do começo ao fim.</h2>
+          <p class="section-copy">Queremos que você saiba o que esperar e tenha tranquilidade em cada etapa do seu atendimento.</p>
+        </div>
+        <div class="steps">
+          <article class="step reveal"><div class="step-number">01</div><h3>Vamos conversar</h3><p>Você conta o que precisa e nossa equipe ajuda a encontrar o melhor horário para sua consulta.</p></article>
+          <article class="step reveal"><div class="step-number">02</div><h3>Avaliamos juntos</h3><p>O profissional avalia sua saúde bucal, tira suas dúvidas e apresenta as possibilidades de cuidado.</p></article>
+          <article class="step reveal"><div class="step-number">03</div><h3>Plano feito para você</h3><p>Com as informações em mãos, você decide os próximos passos com clareza e segurança.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonial-wrap" aria-label="Depoimento">
+      <div class="container">
+        <div class="testimonial reveal">
+          <div><div class="quote-mark">“</div><span class="eyebrow">Experiência OdontoVitta</span></div>
+          <div>
+            <blockquote>“Ser bem atendida fez toda a diferença. Me explicaram cada etapa com carinho e, pela primeira vez, fui ao dentista sem aquele medo de antes.”</blockquote>
+            <div class="quote-person"><div class="quote-avatar">☺</div><div><strong>Mariana S.</strong><small>Paciente da clínica</small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div>
+            <span class="eyebrow">Seu próximo passo</span>
+            <h2>Vamos cuidar do seu sorriso?</h2>
+            <p>Agende uma avaliação e descubra como podemos ajudar. Será um prazer receber você.</p>
+          </div>
+          <a class="btn" id="contactCta" href="https://wa.me/5500000000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">Falar com a equipe <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M9 5.5C5.5 6.5 5 11 6.5 15.5c1.2 3.5 2.1 10.5 5.1 10.5 2.4 0 1.7-7.1 4.4-7.1s2 7.1 4.4 7.1c3 0 3.9-7 5.1-10.5C27 11 26.5 6.5 23 5.5c-2.8-.8-4.9 1.2-7 1.2s-4.2-2-7-1.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+        <span>OdontoVitta<small>Clínica odontológica</small></span>
+      </a>
+      <p class="footer-copy">© <span id="year"></span> OdontoVitta. Todos os direitos reservados.</p>
+      <div class="footer-links"><a href="#servicos">Especialidades</a><a href="#sobre">A clínica</a><a href="#contato">Contato</a></div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/5500000000000?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Entre em contato pelo WhatsApp">
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M26.2 5.7A14.1 14.1 0 0 0 3.9 22.8L2 30l7.4-1.9A14.1 14.1 0 0 0 26.2 5.7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M11.5 9.7c-.4-.9-.8-.9-1.2-.9h-1c-.4 0-.9.2-1.3.7-.5.5-1.7 1.7-1.7 4.1s1.7 4.7 1.9 5c.2.3 3.3 5.2 8.1 7.1 4 1.6 4.8 1.3 5.7 1.2.9-.1 2.9-1.2 3.3-2.4.4-1.2.4-2.2.3-2.4-.1-.2-.5-.4-1-.7s-2.9-1.4-3.4-1.6c-.5-.2-.8-.2-1.1.3-.3.5-1.3 1.6-1.6 1.9-.3.3-.6.4-1.1.1-.5-.2-2.1-.8-4-2.5-1.5-1.3-2.5-2.9-2.8-3.4-.3-.5 0-.8.2-1 .2-.2.5-.6.8-.9.3-.3.4-.5.5-.8.2-.3.1-.6 0-.9-.1-.2-1.1-2.6-1.5-3.5Z" fill="currentColor" transform="translate(2 -1) scale(.85)"/></svg>
+  </a>
+
+  <script>
+    // Menu mobile acessível
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+      menuToggle.textContent = isOpen ? '×' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Abrir menu');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Revela elementos ao entrar na tela; respeita preferência por movimento reduzido
+    const revealElements = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealElements.forEach(el => observer.observe(el));
+    } else {
+      revealElements.forEach(el => el.classList.add('visible'));
+    }
+
+    // Ano automático no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // IMPORTANTE: troque o número de demonstração 5500000000000 pelo WhatsApp real da clínica.
+  </script>
+</body>
+</html>
